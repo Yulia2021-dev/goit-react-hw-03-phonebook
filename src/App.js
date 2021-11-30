@@ -6,6 +6,7 @@ import "./App.scss";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import ContactFilter from "./components/ContactFilter/ContactFilter";
+import { ciEquals } from "./helpers";
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class App extends Component {
         number: prevState.number,
       };
 
-      if (prevState.contacts.some((e) => e.name === contact.name)) {
+      if (prevState.contacts.some((e) => ciEquals(e.name, contact.name))) {
         alert(`${contact.name} is already in contacts`);
         return;
       }
