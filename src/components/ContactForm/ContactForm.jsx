@@ -1,8 +1,7 @@
 import React from 'react';
 
 const ContactForm = (props) => {
-    const { handleNameInput, handleNumberInput,
-      addContact, name, number } = props;
+  const { handleNameInput, handleNumberInput, addContact, name, number } = props;
   return (
     <form onSubmit={addContact}>
       <div className="mb-3">
