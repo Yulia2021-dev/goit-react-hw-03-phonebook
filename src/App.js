@@ -6,7 +6,7 @@ import "./App.scss";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import ContactFilter from "./components/ContactFilter/ContactFilter";
-import { ciEquals } from "./helpers";
+import { ciEquals } from "./helpers/helpers";
 
 class App extends Component {
   constructor(props) {
@@ -17,6 +17,19 @@ class App extends Component {
       number: "",
       filter: "",
     };
+  }
+
+  componentDidMount() {
+    const storedContacts = JSON.parse(localStorage.getItem("contacts"));
+
+    storedContacts && this.setState({ contacts: storedContacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const currentContacts = this.state.contacts;
+
+    currentContacts !== prevState.contacts &&
+      localStorage.setItem("contacts", JSON.stringify(currentContacts));
   }
 
   onChangeName = (event) => {
